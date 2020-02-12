@@ -9,7 +9,7 @@ pipeline
     {
         VERSION = 'latest'
         PROJECT = 'test'
-        IMAGE = 'tap_sample:latest'
+        IMAGE = 'node-hello:latest'
         ECRURL = '720489404340.dkr.ecr.us-east-1.amazonaws.com/prasant-test'
         ECRCRED = 'ecr:us-east-1:tap_ecr'
     }
