@@ -10,8 +10,8 @@ pipeline
         VERSION = 'latest'
         PROJECT = 'tap_sample'
         IMAGE = 'tap_sample:latest'
-        ECRURL = 'http://999999999999.dkr.ecr.eu-central-1.amazonaws.com'
-        ECRCRED = 'ecr:eu-central-1:tap_ecr'
+        ECRURL = '720489404340.dkr.ecr.us-east-1.amazonaws.com/prasant-test'
+        ECRCRED = 'ecr:us-east-1:tap_ecr'
     }
     stages
     {
