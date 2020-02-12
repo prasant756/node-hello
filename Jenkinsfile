@@ -39,8 +39,8 @@ pipeline
                 script
                 {
                     // Build the docker image using a Dockerfile
-                    docker.build("$IMAGE","examples/pipelines/TAP_docker_image_build_push_ecr")
-                }
+                               docker build -t prasant-test .
+      -                       docker tag prasant-test "$IMAGE_URI"                }
             }
         }
         stage('Docker push')
@@ -50,11 +50,10 @@ pipeline
                 script
                 {
                     // login to ECR - for now it seems that that the ECR Jenkins plugin is not performing the login as expected. I hope it will in the future.
-                    sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
-                    // Push the Docker image to ECR
-                    docker.withRegistry(ECRURL, ECRCRED)
+                    docker push "$IMAGE_URI"
+                  - printf '[{"name":"prasant-test","imageUri":"%s"}]' "$IMAGE_URI" > images.json
                     {
-                        docker.image(IMAGE).push()
+                    docker.image(IMAGE).push()
                     }
                 }
             }
