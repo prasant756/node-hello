@@ -1,0 +1,30 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 8
+    commands:
+      #- apt-get update && apt-get install python3-pip -y
+      #- pip3 install awscli --upgrade --user
+      #- export PATH=/home/root/.local/bin:$PATH
+      - echo Installing typescript...
+      - npm install -g typescript
+      - npm install
+      - tsc
+  pre_build:
+    commands:
+      - $(aws ecr get-login --no-include-email)
+      - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+      - IMAGE_URI="720489404340.dkr.ecr.us-east-1.amazonaws.com/prasant-test:$TAG"
+  build:
+    commands:
+      - docker build -t prasant-test .
+      - docker tag prasant-test "$IMAGE_URI"
+  post_build:
+    commands:
+      - docker push "$IMAGE_URI"
+      - printf '[{"name":"prasant-test","imageUri":"%s"}]' "$IMAGE_URI" > images.json
+artifacts:
+  files: images.json
