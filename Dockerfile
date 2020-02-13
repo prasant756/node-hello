@@ -1,4 +1,4 @@
-ROM node:8
+FROM node:8
 WORKDIR .
 COPY . .
 RUN apt-get update
