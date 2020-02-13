@@ -59,14 +59,14 @@ pipeline
                 }
             }
         }
-   # }
+    }
     
-    #post
-    #{
-     #   always
-      #  {
-       #     // make sure that the Docker image is removed
-        #    sh "docker rmi $IMAGE | true"
-        #}
-    #}
-#} 
+   // post
+    //{
+      //  always
+        //{
+           // make sure that the Docker image is removed
+          //  sh "docker rmi $IMAGE | true"
+        //}
+    //}
+//} 
