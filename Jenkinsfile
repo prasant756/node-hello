@@ -39,7 +39,7 @@ pipeline
                 script
                 {
                     // Build the docker image using a Dockerfile
-                    docker.build("$IMAGE","-f ${env.WORKSPACE}/auth-service/Dockerfile  .")
+                    docker.build("$IMAGE","-f ${env.WORKSPACE}/Dockerfile  .")
                 }
             }
         }
